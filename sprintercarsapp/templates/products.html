@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+    <script>
+    function ShowInterest(pid, pname, pimage) {
+        var div = document.getElementById("products");
+        var createForm = document.createElement("form");
+        createForm.setAttribute("action", "");
+        createForm.setAttribute("method", "post");
+        div.appendChild(createForm);
+
+        var id = document.createElement('input');
+        id.setAttribute("type", "text");
+        id.setAttribute("name", "pid");
+        id.value = pid
+        createForm.appendChild(id);
+
+        var name = document.createElement('input');
+        name.setAttribute("type", "text");
+        name.setAttribute("name", "pname");
+        name.value = pname;
+        createForm.appendChild(name);
+
+        var image = document.createElement('input');
+        image.setAttribute("type", "text");
+        image.setAttribute("name", "pimage");
+        image.value = pimage;
+        createForm.appendChild(image);
+
+        var i = document.createElement("input");
+        i.setAttribute('name', 'csrfmiddlewaretoken');
+        i.setAttribute('value', '{{ csrf_token }}');
+        createForm.appendChild(i);
+
+        createForm.submit();
+    }
+    </script>
+     <style>
+  .jumbotron {
+      background-color: black;
+      color: #fff;
+  }
+  </style>
+    <div class="jumbotron text-center">
+    <h1>Sprinter Cars</h1>
+    <p>Here are our products</p>
+  </div>
+<div class="container">
+    <div id="products" class="row list-group">
+        {% for pr in products %}
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <a href="{% url 'detail' pr.id %}">
+                <img class="group list-group-image" src="{{ pr.image.url }}" alt="" style="width: 300px; height: 200px"/>
+                </a>
+                <div class="caption">
+                    <a href="#">
+                    <h4 class="group inner list-group-item-heading">
+                        {{ pr.name }}</h4>
+                    </a>
+                    <p class="group inner list-group-item-text">
+                        <span><strong>Description:</strong></span>{{ pr.description }}
+                    </p>
+                    <br>
+                    <p>
+                        <button class="btn btn-primary" onclick="ShowInterest('{{ pr.id }}', '{{ pr.name }}', '{{ pr.image.url }}')">
+                            <span class="fa fa-heart" ></span> Show Interest
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    <br>
+    <br>
+    <br>
+{% endblock content %}

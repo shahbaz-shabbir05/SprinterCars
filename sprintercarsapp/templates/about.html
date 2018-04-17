@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+  .jumbotron {
+      background-color: black;
+      color: #fff;
+  }
+  </style>
+<section id="wrapper">
+<div class="jumbotron text-center">
+  <h1>About Us</h1>
+  <p>We specialize in blah blah blah!</p>
+
+</div>
+            <div class="container">
+                <div class="row">
+                    <div id="content-wrapper" class="col-xs-12">
+                        <div id="main">
+
+
+                            <section class="page-content page-cms page-cms-4">
+
+                                <div class="container">
+
+                                  <ul class="nav nav-pills">
+                                    <li class="active"><a data-toggle="pill" href="#home" class="tab-about">Owner</a></li>
+                                    <li><a data-toggle="pill" href="#menu1" class="tab-about">Our Company</a></li>
+                                    <li><a data-toggle="pill" href="#menu2" class="tab-about">Testimonials</a></li>
+
+                                  </ul>
+
+                                  <div class="tab-content">
+                                    <div id="home" class="tab-pane fade in active ">
+                                      <h3 class="font-terms">Owner</h3>
+                                        <hr>
+                                      <p><strong>Sprinter Cars -</strong> Smartphones are what Mercedes-Benz wants you to think of when you look at its new Sprinter van. Not just because of the big touchscreen display in the dashboard, but because the new Sprinter represents a technological leap over the simpler hardware that came before, from analog to digital, isolated to connected.</p>
+                                      <br>
+
+                                      <p>We're reminded more of a tablet (in a reinforced, professional-grade ballistic case). When Apple released the first iPad in 2010, some of us wondered what the point was; it looked like an oversize iPod Touch. But time has shown that the tablet is more about what you do with it than what it is. And so it is with the new Sprinter.</p>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
+                                      <h3 class="font-terms">Our Company</h3>
+                                        <hr>
+                                      <p><strong>Mercedes-Benz</strong> van dealers in Europe are now accepting orders for deliveries that will start in June. The zero-emissions eSprinter is set to follow sometime next year. It’s priced starting at the equivalent of about $24,400 before tax for the entry-level, front-drive model, and pricing on the new model in Germany actually undercuts the current model by some $1200. With improved fuel economy, longer service intervals, and time-saving technologies, the new Sprinter promises to be cheaper to run, too. And although the fresh design may not be a prime consideration for professionals, the new model’s looks certainly won't hinder Daimler's effort to attract new customers and encourage existing owners to trade up.</p>
+                                      <br>
+
+                                      <p>More information on availability and specifications in the United States will be released before the new Sprinter arrives at U.S. Mercedes and Freightliner dealers sometime before the end of this year.
+
+Work is currently underway in Charleston, South Carolina, on a new assembly line to build the new Sprinter for U.S. consumption. In the meantime, the first to reach these shores will, like the current model, continue to be assembled in Düsseldorf, Germany, before being partially disassembled into knock-down kits for reassembly at the expanding South Carolina facility.</p>
+                                    </div>
+                                    <div id="menu2" class="tab-pane fade">
+                                      <h3 class="font-terms">Testimonial</h3>
+                                        <hr>
+                                      <p>“The Mercedes-Benz Sprinter van is one of the most flexible and highly-configurable vehicles on the market. It's as versatile for commercial users as it is for adventurers. For 2017, a new Sprinter Worker trim level is on offer. Unlike the rest of the lineup, the Worker is only available in a handful of configurations with few options; it's designed to make ordering easier for commercial buyers.” <strong>Mercedes-Benz Sprinter</strong></p>
+                                      <br>
+                                      <p>“It's a costly hauler, but it feels worth every bit of its price of entry. The Sprinter is available as a cargo van, a crew van, a passenger van, and a cab chassis. Several different wheelbases are also on offer.“ <strong>Mercedes-Benz Sprinter</strong></p>
+                                      <br>
+                                      <p>“There's no denying the fact that the Sprinter is a big, boxy van that emphasizes practicality over sleek lines. However, some crisp styling touches here and there help it look a little more upmarket and cohesive than its rivals, especially the awkward Nissan NV and the Ram ProMaster.“
+                                <strong>Mercedes-Benz Sprinter</strong></p>
+                                    </div>
+                                  </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<br>
+
+<div class="container">
+    <div id="products" class="row list-group">
+    <h2>All Products Images</h2>
+    <hr>
+        {% for img in all_products %}
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <a href="{% url 'detail' img.id %}">
+                <img class="group list-group-image" src="{{ img.image.url }}" alt="" style="width: 300px; height: 200px"/>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+    <div class="container">
+    <div id="products" class="row list-group">
+    <h2>Sold Products</h2>
+    <hr>
+        {% for pr in sold_products %}
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <a href="{% url 'detail' pr.id %}">
+                <img class="group list-group-image" src="{{ pr.image.url }}" alt="" style="width: 300px; height: 200px"/>
+                </a>
+                <div class="caption">
+                    <a href="#">
+                    <h4 class="group inner list-group-item-heading">
+                        {{ pr.name }}</h4>
+                    </a>
+                    <p class="group inner list-group-item-text">
+                        <span><strong>Description:</strong></span>{{ pr.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+        <br>
+    <br>
+    <br>
+{% endblock %}
